@@ -12,7 +12,7 @@ as a function of the density $d$. The entropy term counts the number of distinct
 
 The equilibrium density is the value $d_{eq}(T, C)$ that minimizes the free energy. Thus we need to find $d$ such that
 
-$$ F_d = -4 d - C + T (\log(d) - \log(1 - d)) = 0, \quad F_{dd} = -4 + T \left( \frac{1}{d} + \frac{1}{1 - d} \right) > 0. $$
+$$ F_d = -4 d - C + T (\log(d) - \log(1 - d)) = 0, \quad F_{dd} = -4 + \frac{T}{d (1 - d)} > 0. $$
 
 This problem has the natural range $d \in [0, 1]$. The equilibrium density is guaranteed to be $d_{eq} \in (0, 1)$ since
 
@@ -21,14 +21,16 @@ $$ F(d=1) = -2 - C, \quad F_d(d=1) = -\log(0^+) = +\infty. $$
 
 That is, although the free energy is well-defined and finite at the boundaries, the values are approached with infinite derivatives that ensure any minima are in the interior.
 
-This system has a critical point at $(T_0, C_0) = (1, -2)$. There are three regions of the phase diagram. First, when $T < T_0$, there are two relative minima: a "gas" density $<1/2$ and a "liquid" density $>1/2$. For $C < C_0$ the gas density is the absolute minimum; for $C > C_0$ the liquid density is the absolute minimum. Along the equilibrium line $C = C_0$ the two minima have the same free energy and the phases coexist. For $T > T_0$ there is only one relative minimum (which is also the absolute minimum) and thus no phase change. While this density is $<1/2$ for $C < C_0$ and vice versa, it is not referred to as a gas or liquid density because it varies smoothly with $C$.
+Solving $F_{dd} > 0$ gives
 
-### Approximations
+$$ d < d_-(T) = \frac{1 - \sqrt{1 - T}}{2} < 1/2 \quad \text{or} \quad d > d_+(T) = \frac{1 + \sqrt{1 - T}}{2} > 1/2. $$
 
-To have good starting points for the optimization, consider the limits of low and high densities. For low density:
+When $T > 1$ the function is concave on $(0, 1)$ and there is a unique minimum. This is the supercritical phase. For $T < 1$ the function is not concave. There will be a local minimum with $d < 1/2$, corresponding to a gas phase, if
 
-$$ F_d \approx -C + T \log(d) = 0 \quad \Rightarrow \quad d_{eq} \approx e^{C/T} $$
+$$ F_d(d_-) > 0 \quad \Rightarrow \quad C < C_{gas}(T) = -2 + 2 \sqrt{1 - T} + T \log\left( \frac{2 - T - 2 \sqrt{1 - T}}{T} \right). $$
 
-For high density, $d = 1 - x$ with $x \ll 1$:
+Similarly, there will be a local minimum with $d > 1/2$ corresponding to a liquid phase if
 
-$$ F_d \approx -4 - T \log(x) = 0 \quad \Rightarrow \quad d_{eq} = 1 - e^{-4/T}.  $$
+$$ F_d(d_+) < 0 \quad \Rightarrow \quad C > C_{liq}(T) = -2 - 2 \sqrt{1 - T} + T \log\left( \frac{2 - T + 2 \sqrt{1 - T}}{T} \right). $$
+
+There is a range of chemical potentials $C_{liq} < C < C_{gas}$ for which there are two local minima. One is the absolute minimum and the true equilibrium state; the other is a metastable state. The critical chemical potential separating liquid and gas equilibria turns out to be $C = -2$ at all temperatures.
